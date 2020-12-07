@@ -1,23 +1,27 @@
-import logo from './logo.svg';
 import './App.css';
+import Layout from './Layout'
+import {Route} from 'react-router'
+import {useState} from 'react'
 
 function App() {
+
+  // const [pos, setPos] = useState({
+  //   x: 0,
+  //   y: 0  
+  // })
+
+  // const fun = (e) => {
+  //   console.log(e)
+  //   setPos({
+  //     x:e.pageX,
+  //     y:e.pageY
+  //   })  
+  // }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app">
+      <h1 draggable='true'>hello</h1>
+      <Route path="/" component={Layout} />
     </div>
   );
 }

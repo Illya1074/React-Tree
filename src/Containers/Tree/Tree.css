@@ -1,0 +1,32 @@
+.tree_node{
+    /* border-left: 1px solid #333; */
+    transition: 0.5;
+    height: min-content;
+    /* border: 1px solid black; */
+}
+
+
+.tree_node_item{
+    display: flex;
+    flex-direction: row;
+    padding: 3px;
+}
+
+
+.tree_node_item_add-button{
+    margin: auto 0 auto 20px;
+}
+
+
+.tree_node_item.active:hover{
+    background-color: #ccc;
+    /* width: 100%; */
+    /* height: 3px; */
+}
+
+
+
+.myBar{
+    width: 100%;
+    height: 3px;
+}

@@ -1,0 +1,37 @@
+.wrap {
+    width: 100vw;
+    height: 100vh;
+    /* border: 1px solid black; */
+    z-index:0;
+    position: absolute;
+    top: 0;
+    left: 0;  
+
+  }
+  
+  
+  
+  
+  .draggble{
+    cursor: pointer;
+    font-size: 50px;
+    color: #333;
+  }
+  
+  
+  .element{
+    /* font-size: 60px; */
+    cursor: pointer;
+    z-index: 1;
+    /* width: min-content; */
+    /* overflow: hidden; */
+    /* margin: 100px auto; */
+    position: absolute;
+    /* transition: 0.01s; */
+    
+  }
+  
+
+  
+  
+  
