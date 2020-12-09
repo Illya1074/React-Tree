@@ -2,9 +2,13 @@ import React, {useEffect, useState} from 'react'
 import './Tree.css';
 import ContentEditable from 'react-contenteditable'
 import Circle from '../Circle/Circle'
-import Draggable from 'react-draggable';
 
-const TreeItem = ({item, openNode, addNode, deleteNodeFun, editTitle, myLastNode, myDispatch, myNodes}) => {
+export const addNode = 'addNode'
+export const openNode = 'openAndCloseNode'
+export const deleteNode = 'deleteNode'
+export const editTitle = 'editTitle'
+
+const TreeItem = ({item,eventDispatcher, myLastNode, myDispatch, myNodes, isDragging, isDraggingVal}) => {
     
     const [isDraggingState,setIsDraggingState] = useState(false)
     const [typing, setTyping] = useState({
@@ -13,39 +17,44 @@ const TreeItem = ({item, openNode, addNode, deleteNodeFun, editTitle, myLastNode
         val: item.title
     })
 
-
     useEffect(() => {
-        return () => {
+        return () => {            
             clearTimeout(typing.timeCode)
         }
-    })
+    },[typing])
     
-    function handleChange(evt) {
+    useEffect(() => {
+        setIsDraggingState(isDraggingVal)
+    }, [isDraggingVal])
 
-        if(typing.state === true){
-            clearTimeout(typing.timeCode)
-        }
-        
+    async function handleChange(evt) {
+   
         const timer = setTimeout(() => {
+            console.log(item.title + ' Finish')
             setTyping({
                 state: false,
                 timeCode: null,
                 val: evt.target.value
             })
-            editTitle(item.id, evt.target.value)
-        }, 2000);
-
+            eventDispatcher(editTitle,item.id, evt.target.value)
+        }, 1500)
+        
         setTyping({
             state: true,
             timeCode: timer,
             val: evt.target.value
         })
+    
 
     };
     
     
     const onDrop = (id) => {
-        myLastNode(item.title)
+        if(isDraggingState){
+            // console.log(isDraggingState)
+
+            myLastNode(item.title)
+        }
     }
     
 
@@ -57,7 +66,7 @@ const TreeItem = ({item, openNode, addNode, deleteNodeFun, editTitle, myLastNode
 
 
     const isDraggingFun = (val) => {
-        setIsDraggingState(val)
+        isDragging(val)
         // console.log(val)
     }
 
@@ -67,27 +76,27 @@ const TreeItem = ({item, openNode, addNode, deleteNodeFun, editTitle, myLastNode
         <div className="tree_node" style={{paddingLeft: '20px', cursor: 'pointer', paddingTop: '10px'}}>
             <Circle myDispatch={myDispatchFun} isDragging={isDraggingFun}/>
             
-            <div  className="tree_node_item active" style={{zIndex:'100'}}  onMouseOver={() => onDrop(item.title)}>
+            <div className={isDraggingState ? "tree_node_item active" : "tree_node_item"} style={{zIndex:'100'}}  onMouseOver={() => onDrop(item.title)}>
             
                 <ContentEditable className='tree_node_item_add-button' html={typing.state ? typing.val : item.title}
                  onClick={myDispatchFun} onChange={handleChange} />
-                <h5 className='tree_node_item_add-button'  onClick={() => openNode(item.id)}>^</h5>
-                <h5 className='tree_node_item_add-button'  onClick={() => addNode(item.id)}>add</h5>
-                <h5 className='tree_node_item_add-button'  onClick={() => typing.state ? null : deleteNodeFun(item.id)}>del</h5>
+                <h5 className='tree_node_item_add-button'  onClick={() => eventDispatcher(openNode,item.id)}>^</h5>
+                <h5 className='tree_node_item_add-button'  onClick={() => eventDispatcher(addNode,item.id)}>add</h5>
+                <h5 className='tree_node_item_add-button'  onClick={() => typing.state ? null : eventDispatcher(deleteNode,item.id)}>del</h5>
                 
             </div>
-            <div className='myBar'></div>
-            {item.items && item.state === true ? <Tree items={item.items} myNodes={myNodes} myLastNode={myLastNode}  myDispatch={myDispatch}
-             editTitle={editTitle} openNode={openNode} addNode={addNode} deleteNodeFun={deleteNodeFun}/> : null}
+            <div className={isDraggingState ? "myBar active" : "myBar"}></div>
+            {item.items && item.state === true ? <Tree items={item.items} eventDispatcher={eventDispatcher} isDragging={isDraggingFun} myNodes={myNodes} myLastNode={myLastNode}  myDispatch={myDispatch}
+             isDraggingVal={isDraggingVal}/> : null}
         </div>
     )
 } 
         
 
 
-const Tree = ({items, openNode, addNode, deleteNodeFun, editTitle, myLastNode, myDispatch, myNodes}) => <div>
-    {items.map((i, key) => <TreeItem  key={key} item={i} myLastNode={myLastNode} openNode={openNode}
-     myDispatch={myDispatch} addNode={addNode} editTitle={editTitle} deleteNodeFun={deleteNodeFun} myNodes={myNodes}/>)}    
+const Tree = ({items, eventDispatcher, myLastNode, myDispatch, myNodes, isDragging, isDraggingVal}) => <div>
+    {items.map((i, key) => <TreeItem  key={key} item={i} myLastNode={myLastNode} myDispatch={myDispatch} eventDispatcher={eventDispatcher} 
+    isDragging={isDragging} isDraggingVal={isDraggingVal} myNodes={myNodes}/>)}    
 </div>
 
 

@@ -1,35 +1,31 @@
 import React, {useState, useEffect} from 'react'
 import Tree from './Containers/Tree/Tree'
 import {useSelector, useDispatch} from "react-redux"
-import {openAndCloseNode, addNode, deleteNode, editTitle} from './Actions/index' 
+import allActions from './Actions' 
 
 
 const Layout = () => {
     const tree = useSelector(state => state.tree)
     const dispatch = useDispatch();
     const [lastNode, setLastNode] = useState(null)
-    const openAndCloseNodeFun = (id) => {
-        dispatch(openAndCloseNode(id));
-        // console.log(id)
-    }
+    const [isDraggingVal, setIsDraggingVal] = useState(false);
+    
     const [sign, setSign] = useState(false);
     const [from, setFrom] = useState();
-    const addNodeFun = (id) => {
-        dispatch(addNode(id));
-    }
+
 
     useEffect(() => {
-        console.log(from,lastNode)
+        // console.log(from,lastNode)
+        dispatchFun(from,lastNode)
         setSign(false)
         // myDispatch()
     }, [sign])
 
-    const deleteNodeFun = (id) => {
-        dispatch(deleteNode(id))
-    }
+    function fireEvent(...args) {
+        const event = args[0];
+        const params = args.splice(1);
 
-    const editTitleFun = (id, val) => {
-        dispatch(editTitle(id, val))
+        dispatch(allActions.tree[event].apply(this, params))
     }
 
 
@@ -38,11 +34,22 @@ const Layout = () => {
         // console.log(val) 
     }
 
+    const dispatchFun = (a, b) => {
+        if(lastNode !== null){
+            console.log('dispatch from '+a+' to '+b)
+            setLastNode(null)
+        }
+        
+    }
+
     const myDispatch = (val) => {
         setFrom(val)
         setSign(true)
         // console.log(lastNode)
-        
+    }
+
+    const isDraggingFun = (val) => {
+        setIsDraggingVal(val)
     }
 
     
@@ -51,10 +58,9 @@ const Layout = () => {
         
         <>
             {/* <ContentEditable html={'Okey'} onBlur={handleBlur} onChange={(evt)=>} /> */}
-            <h1 onClick={() => myDispatch()}>Nothing</h1>
             <div className='tree'>
-                <Tree openNode={openAndCloseNodeFun} myDispatch={myDispatch} myLastNode={myLastNode} addNode={addNodeFun}
-                 items={tree} deleteNodeFun={deleteNodeFun} editTitle={editTitleFun} myNodes={lastNode}/>
+                <Tree eventDispatcher={fireEvent} myDispatch={myDispatch} myLastNode={myLastNode}
+                 items={tree} isDragging={isDraggingFun} myNodes={lastNode} isDraggingVal={isDraggingVal}/>
             </div>
         </>
     )

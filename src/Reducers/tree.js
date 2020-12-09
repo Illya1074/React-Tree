@@ -63,7 +63,7 @@ const deleteNode = (id , state) => {
     const updatedPath = [...findPath(id,state).slice(0, findPath(id,state).length-1)];
     const indexDelItem = findPath(id,state).slice(0, findPath(id,state).length-1)[updatedPath.length-1];
     const myItem = R.view(composeLense(updatedPath.slice(0,updatedPath.length-1)), state);
-    const newState = R.set(composeLense(updatedPath.slice(0,updatedPath.length-1)), [...myItem.slice(0,indexDelItem), ...myItem.slice(indexDelItem+1)], state);
+    const newState = R.set(composeLense(updatedPath.slice(0,updatedPath.length-1)), [...myItem.slice(0,parseInt(indexDelItem)), ...myItem.slice(parseInt(indexDelItem)+1)], state);
     return newState
 }
 

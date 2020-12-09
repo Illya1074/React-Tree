@@ -18,15 +18,22 @@
 }
 
 
-.tree_node_item.active:hover{
+.tree_node_item.active:hover + .myBar{
     background-color: #ccc;
     /* width: 100%; */
     /* height: 3px; */
 }
 
+.myBar.active:hover{
+    background-color: #ccc;
 
+}
 
 .myBar{
     width: 100%;
-    height: 3px;
+    height: 5px;
+    border-radius: 50px;
+    transition: 0.2s;
 }
+
+
