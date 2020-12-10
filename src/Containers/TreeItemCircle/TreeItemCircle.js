@@ -16,9 +16,9 @@ const Circle = ({ myDispatch, isDragging}) => {
 
     return (
         // <Draggable onStart={onStart} onStop={onStop}>
-        <Draggable onStop={onStop} isDragging={isDraggingFun}>
+        // <Draggable onStop={onStop} isDragging={isDraggingFun}>
             <span className='circle'> ◉</span>       
-        </Draggable>
+        // </Draggable>
         
     )
 }

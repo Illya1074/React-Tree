@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import Tree from './Containers/Tree/Tree'
+import Tree from './Pages/Tree/Tree'
 import {useSelector, useDispatch} from "react-redux"
 import allActions from './Actions' 
 

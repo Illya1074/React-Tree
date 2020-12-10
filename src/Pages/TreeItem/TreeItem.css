@@ -1,0 +1,4 @@
+.my-tree-node{
+    display: flex;
+    flex-direction: column;
+}

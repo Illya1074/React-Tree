@@ -2,6 +2,7 @@ import './App.css';
 import Layout from './Layout'
 import {Route} from 'react-router'
 import {useState} from 'react'
+import TreeItem from './Pages/TreeItem/TreeItem'
 
 function App() {
 
@@ -20,7 +21,7 @@ function App() {
 
   return (
     <div className="app">
-      <h1 draggable='true'>hello</h1>
+      {/* <Route path="/" component={Layout} /> */}
       <Route path="/" component={Layout} />
     </div>
   );

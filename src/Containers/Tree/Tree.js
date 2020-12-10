@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import './Tree.css';
 import ContentEditable from 'react-contenteditable'
-import Circle from '../Circle/Circle'
+import Circle from '../TreeItemCircle/TreeItemCircle'
 
 export const addNode = 'addNode'
 export const openNode = 'openAndCloseNode'
