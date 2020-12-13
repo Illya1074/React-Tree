@@ -52,7 +52,7 @@ function Draggable({onStop, isDragging, children}) {
   return (
     // <div onMouseMove={postState ? onMouseMove : onMouseMove} onMouseUp={onMouseUp} className={postState ? 'wrap' : 'wrap'}>
   <span  onMouseDown={onMouseDown} onMouseUp={onMouseUp}
-   style={{transition:'0.05s', transform:  postState ? 'translate('+(mousePosition.x-deltaPos.x-10)+'px,'+(mousePosition.y-deltaPos.y-10)+'px'+')'
+   style={{transition:'0.05s', transform:  postState ? 'translate('+(mousePosition.x-deltaPos.x-13)+'px,'+(mousePosition.y-deltaPos.y-13)+'px'+')'
     : null}}  className={postState ? 'element active' : 'element'}>{children}</span>       
     // </div>
   );

@@ -37,6 +37,14 @@ const lastNode = (val) => {
     }
 }
 
+export const dragAndDrop = (itemFromId,itemTo) => {
+    return{
+        type: 'DRAG_AND_DROP',
+        itemFromId: itemFromId,
+        itemTo: itemTo
+    }
+}
+
 export default {
     openAndCloseNode, addNode, deleteNode, editTitle,lastNode
 }

@@ -1,4 +1,28 @@
+
 .my-tree-node{
     display: flex;
     flex-direction: column;
+}
+
+.my-tree-node_element{
+    padding: 0 0 5px;
+}
+
+.my-tree-node_element:hover > .my-bar{
+    background-color: #ddd;
+}
+
+
+.my-bar{
+    width: 100%;
+    height: 5px;
+    border-radius: 10px;
+    margin: 5px 0 0;
+}
+
+.my-bar_none{
+    width: 100%;
+    height: 5px;
+    border-radius: 10px;
+    margin: 5px 0 0;
 }

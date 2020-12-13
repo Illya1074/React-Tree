@@ -20,7 +20,7 @@ const findPath = (primitive, object, path = []) => {
     return null;
   }
 
-  ////////////////////////////////// that function take path wrapped in array an compose it
+////////////////////////////////// that function take path wrapped in array an compose it
 
 const composeLense = (arr) => {
     return R.compose(...arr.map(item => isNaN(item) ? R.lensProp(item) : R.lensIndex(parseInt(item))));
@@ -39,16 +39,17 @@ const openAndClose = (prim, obj) => {
 
 //////////////////////////////////// that function return update tree with additional node 
 
-const addNode = (id, state) => {
-    const updatedPath = [...findPath(id,state).slice(0, findPath(id,state).length-1), 'items'];
-    const myItem = R.view(composeLense(updatedPath), state);
-    const newState = R.set(composeLense(updatedPath), [...myItem,{
+const addNode = (id, state, obj=null) => {
+    const myObj = obj || {
         id: Math.floor(Math.random()*16777215).toString(16),
         title: 'new item',
         icon: 'file',
         state: true,
         items: []
-    }], state);
+    };
+    const updatedPath = [...findPath(id,state).slice(0, findPath(id,state).length-1), 'items'];
+    const myItem = R.view(composeLense(updatedPath), state);
+    const newState = R.set(composeLense(updatedPath), [...myItem, myObj], state);
     return newState;
 }
 
@@ -67,7 +68,7 @@ const deleteNode = (id , state) => {
     return newState
 }
 
-
+// ///////////////////////////////// editTitle edit your title
 
 
 const editTitle = (id, title, state) => {
@@ -76,6 +77,19 @@ const editTitle = (id, title, state) => {
     const newState = R.set(composeLense(updatedPath), title, state);
     return newState;
     // console.log(id, title)
+}
+
+///////////////////////////////////////////
+
+
+const canIDrop = (from, to) => {
+    
+    if(findPath(to.id, from) === null){
+        if(from !== null || to !== null){
+            return true
+        }
+    }
+    return false;    
 }
 
 const tree = (state =  [
@@ -193,6 +207,16 @@ const tree = (state =  [
             return deleteNode(action.id, state)
         case 'EDIT_TITLE':
             return editTitle(action.id, action.val, state)
+        case 'DRAG_AND_DROP':
+            // console.log(action.itemFromId , action.itemTo)
+            // if(action.itemFromId.items.length === 0){
+                // if(action.itemFromId !== null || action.itemTo !== null)
+            if(canIDrop(action.itemFromId , action.itemTo)){
+                console.log('here')
+                return addNode(action.itemTo.id, deleteNode(action.itemFromId.id, state), action.itemFromId)
+            }
+            // return addNode(action.itemTo.id, deleteNode(action.itemFromId.id, state), action.itemFromId);
+            // }
     }
     return state;   
 }

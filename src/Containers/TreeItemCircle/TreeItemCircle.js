@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import Draggable from '../Draggable/Draggable';
 import './Circle.css';
 
-const Circle = ({ myDispatch, isDragging}) => {
+const Circle = ({ myDispatch, isDragging, myClassName}) => {
     
 
     const isDraggingFun = (val) => {
@@ -17,7 +17,7 @@ const Circle = ({ myDispatch, isDragging}) => {
     return (
         // <Draggable onStart={onStart} onStop={onStop}>
         // <Draggable onStop={onStop} isDragging={isDraggingFun}>
-            <span className='circle'> ◉</span>       
+            <span className={myClassName}> ◉</span>       
         // </Draggable>
         
     )

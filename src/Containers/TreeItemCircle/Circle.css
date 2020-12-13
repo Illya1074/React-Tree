@@ -1,18 +1,12 @@
 .circle{
     position: absolute;
-    /* cursor: grab; */
-    /* border: 1px solid black; */
-    /* overflow */
-    /* transform: translateY(-50%); */
-    /* height: min-content; */
     border-radius: 50px;
     font-size: 20px;
     background-color: 'transparent';
     height: auto;
     width: 20px;
-    /* cursor: grab; */
+    transform: translateY(-15%);
 }
-
 
 
 

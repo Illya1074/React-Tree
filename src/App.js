@@ -1,8 +1,6 @@
 import './App.css';
-import Layout from './Layout'
+import Layout from './Pages/Layout/Layout'
 import {Route} from 'react-router'
-import {useState} from 'react'
-import TreeItem from './Pages/TreeItem/TreeItem'
 
 function App() {
 
