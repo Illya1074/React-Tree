@@ -9,7 +9,6 @@ const Layout = () => {
     const dispatch = useDispatch();
     const [lastNode, setLastNode] = useState(null)
     const [isDraggingVal, setIsDraggingVal] = useState(false);
-    
     const [sign, setSign] = useState(false);
     const [from, setFrom] = useState();
 

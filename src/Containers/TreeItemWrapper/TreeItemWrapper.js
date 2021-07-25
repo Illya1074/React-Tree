@@ -1,12 +1,15 @@
 import React from 'react'
 import './TreeItemWrapper.css'
 
-const TreeItemWrapper = (props) => {
+
+const TreeItemWrapper = ({children}) => {
     return (
         <div className="tree-item-wrapper" >
-            {props.children}
+            {children}
         </div>
     )
 }
 
 export default TreeItemWrapper
+
+

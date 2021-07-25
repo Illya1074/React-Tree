@@ -1,26 +1,19 @@
-import React, {useState, useEffect} from 'react';
-import Draggable from '../Draggable/Draggable';
 import './Circle.css';
+import PropTypes from 'prop-types';
 
-const Circle = ({ myDispatch, isDragging, myClassName}) => {
+const Circle = ({myClassName, wrapCircleActive}) => {
     
 
-    const isDraggingFun = (val) => {
-        isDragging(val)
-    }
-
-    const onStop = (e) => {    
-        console.log('stop')    
-        myDispatch()
-    }
-
     return (
-        // <Draggable onStart={onStart} onStop={onStop}>
-        // <Draggable onStop={onStop} isDragging={isDraggingFun}>
-            <span className={myClassName}> ◉</span>       
-        // </Draggable>
-        
+            <div className={wrapCircleActive}>
+                <div className={myClassName}></div>
+            </div>               
     )
 }
 
 export default Circle
+
+
+Circle.propTypes = {
+    myClassName: PropTypes.string,
+};

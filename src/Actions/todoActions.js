@@ -30,12 +30,7 @@ const editTitle = (id, val) => {
     }
 }
 
-const lastNode = (val) => {
-    return{
-        type: 'LAST_NODE',
-        val: val
-    }
-}
+
 
 export const dragAndDrop = (itemFromId,itemTo) => {
     return{
@@ -46,5 +41,5 @@ export const dragAndDrop = (itemFromId,itemTo) => {
 }
 
 export default {
-    openAndCloseNode, addNode, deleteNode, editTitle,lastNode
+    openAndCloseNode, addNode, deleteNode, editTitle
 }

@@ -47,6 +47,7 @@ const addNode = (id, state, obj=null) => {
         state: true,
         items: []
     };
+    // console.log(state)
     const updatedPath = [...findPath(id,state).slice(0, findPath(id,state).length-1), 'items'];
     const myItem = R.view(composeLense(updatedPath), state);
     const newState = R.set(composeLense(updatedPath), [...myItem, myObj], state);
@@ -57,14 +58,16 @@ const addNode = (id, state, obj=null) => {
 
 
 const deleteNode = (id , state) => {
-
+    // console.log(id)
     if(findPath(id,state).length-1 === 1){
-        return [...state.slice(0,findPath(id,state)[0]), ...state.slice(findPath(id,state)[0]+1)]
+        return [...state.slice(0,parseInt(findPath(id,state)[0])), ...state.slice(parseInt(findPath(id,state)[0])+1)]
     }
     const updatedPath = [...findPath(id,state).slice(0, findPath(id,state).length-1)];
+    // console.log(state)
     const indexDelItem = findPath(id,state).slice(0, findPath(id,state).length-1)[updatedPath.length-1];
     const myItem = R.view(composeLense(updatedPath.slice(0,updatedPath.length-1)), state);
     const newState = R.set(composeLense(updatedPath.slice(0,updatedPath.length-1)), [...myItem.slice(0,parseInt(indexDelItem)), ...myItem.slice(parseInt(indexDelItem)+1)], state);
+    
     return newState
 }
 
@@ -106,7 +109,7 @@ const tree = (state =  [
                 state: true,
                 items: [
                     {
-                        id: Math.floor(Math.random()*16777215).toString(16),
+                        id: '45abc6',
                         title: 'science',
                         icon: 'file',
                         state: true,
@@ -129,13 +132,13 @@ const tree = (state =  [
                 ]
             },
             {
-              id: Math.floor(Math.random()*16777215).toString(16),
+              id: '6f5gd3',
               title: 'school',
               icon: 'file',
               state: true,
               items: [
                   {
-                      id: Math.floor(Math.random()*16777215).toString(16),
+                      id: '7h568h',
                       title: 'math',
                       icon: 'file',
                       state: true,
@@ -153,7 +156,7 @@ const tree = (state =  [
         ]
     },
     {
-        id: Math.floor(Math.random()*16777215).toString(16),
+        id: '5t623r',
         title: 'shop', 
         icon: 'folder',
         state: true,
@@ -168,7 +171,7 @@ const tree = (state =  [
         ]
     },
     {
-        id: Math.floor(Math.random()*16777215).toString(16),
+        id: '7y689e',
         title: 'myday', 
         icon: 'folder',
         state: true,
@@ -211,8 +214,9 @@ const tree = (state =  [
             // console.log(action.itemFromId , action.itemTo)
             // if(action.itemFromId.items.length === 0){
                 // if(action.itemFromId !== null || action.itemTo !== null)
+            // console.log(state)
             if(canIDrop(action.itemFromId , action.itemTo)){
-                console.log('here')
+                // console.log(deleteNode(action.itemFromId.id, state))
                 return addNode(action.itemTo.id, deleteNode(action.itemFromId.id, state), action.itemFromId)
             }
             // return addNode(action.itemTo.id, deleteNode(action.itemFromId.id, state), action.itemFromId);

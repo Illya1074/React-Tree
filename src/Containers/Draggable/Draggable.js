@@ -1,5 +1,6 @@
 import './Draggable.css';
 import {useState, useEffect} from 'react'
+import PropTypes from 'prop-types';
 
 function Draggable({onStop, isDragging, children}) {
 
@@ -52,10 +53,15 @@ function Draggable({onStop, isDragging, children}) {
   return (
     // <div onMouseMove={postState ? onMouseMove : onMouseMove} onMouseUp={onMouseUp} className={postState ? 'wrap' : 'wrap'}>
   <span  onMouseDown={onMouseDown} onMouseUp={onMouseUp}
-   style={{transition:'0.05s', transform:  postState ? 'translate('+(mousePosition.x-deltaPos.x-13)+'px,'+(mousePosition.y-deltaPos.y-13)+'px'+')'
+   style={{ transform:  postState ? 'translate('+(mousePosition.x-deltaPos.x-13)+'px,'+(mousePosition.y-deltaPos.y-13)+'px'+')'
     : null}}  className={postState ? 'element active' : 'element'}>{children}</span>       
     // </div>
   );
 }
 
 export default Draggable;
+
+Draggable.propTypes = {
+  onStop: PropTypes.func,
+  isDragging: PropTypes.func,
+};

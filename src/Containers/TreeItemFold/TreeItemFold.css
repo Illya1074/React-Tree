@@ -1,0 +1,19 @@
+.triangle{
+    width: 0;
+    height: 0;
+    position: absolute;
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    border-top: 7px solid #aaa;
+    left: 50px;
+    transform: translate(0%, 100%);
+    z-index: 1;
+}
+
+.triangle:hover{
+    border-top: 7px solid #666;
+}
+
+.my-tree-node_element:hover .triangle{
+    border-top: 7px solid #666;
+}

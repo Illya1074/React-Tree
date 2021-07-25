@@ -6,6 +6,10 @@
 
 .my-tree-node_element{
     padding: 0 0 5px;
+    /* border: 1px solid black; */
+    padding-left: 60px;
+    position: relative;
+
 }
 
 .my-tree-node_element:hover > .my-bar{
@@ -25,4 +29,9 @@
     height: 5px;
     border-radius: 10px;
     margin: 5px 0 0;
+}
+
+.nodes-wrap{
+    border-left: 1px solid #aaa;
+    margin-left: 30px;
 }

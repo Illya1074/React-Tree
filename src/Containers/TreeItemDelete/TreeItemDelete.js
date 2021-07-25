@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types';
 
 const TreeItemDelete = ({click}) => {
     return (
@@ -9,3 +10,8 @@ const TreeItemDelete = ({click}) => {
 }
 
 export default TreeItemDelete
+
+
+TreeItemDelete.propTypes = {
+    click: PropTypes.func,
+  };

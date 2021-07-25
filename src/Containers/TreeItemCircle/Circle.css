@@ -1,15 +1,40 @@
 .circle{
     position: absolute;
+    /* display: inline; */
+    width: 8px;
+    height: 8px;
+    background-color: #555;
     border-radius: 50px;
     font-size: 20px;
-    background-color: 'transparent';
-    height: auto;
-    width: 20px;
-    transform: translateY(-15%);
+    transform: translate(70%,70%);
+    left: 0px;
+    z-index: 1;
 }
 
+.wrap-circle_active{
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    background-color: #aaa;
+    border-radius: 50px;
+    /* left: 50px; */
+    left: -35px;
+    z-index: 1;
+}
 
+.wrap-circle{
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    left: 5px;
+    border-radius: 50px;
+    z-index: 10;
+}
 
-[draggable=true] {
-    cursor: move;
-  }
+.my-tree-node_element:hover .wrap-circle{
+    background-color: #ccc;
+}
+
+.my-tree-node_element:hover .wrap-circle:hover{
+    background-color: #aaa;
+}
